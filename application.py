@@ -11,11 +11,14 @@ import pymongo
 
 app = Flask(__name__)
 
+
 @app.route("/")
+@cross_origin()
 def home():
     return render_template('index.html')
 
 @app.route("/review",methods=["GET","POST"])
+@cross_origin()
 def review_items():
     if request.method=='POST':
         try:
