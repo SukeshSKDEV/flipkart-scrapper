@@ -1925,3 +1925,13 @@ INFO:werkzeug: * Detected change in '/config/workspace/app.py', reloading
 INFO:werkzeug: * Restarting with stat
 WARNING:werkzeug: * Debugger is active!
 INFO:werkzeug: * Debugger PIN: 717-535-271
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 618-903-697
+INFO:werkzeug:172.18.0.2 - - [15/Mar/2023 22:58:43] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:172.18.0.2 - - [15/Mar/2023 22:58:44] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:root:rating
+INFO:werkzeug:172.18.0.2 - - [15/Mar/2023 22:58:49] "[37mPOST /review HTTP/1.1[0m" 200 -
+INFO:root:rating
+INFO:werkzeug:172.18.0.2 - - [15/Mar/2023 22:58:58] "[37mPOST /review HTTP/1.1[0m" 200 -
