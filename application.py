@@ -1,15 +1,13 @@
 from flask import Flask, render_template, request,jsonify,redirect
-import requests
 from flask_cors import CORS,cross_origin
 import requests
 from bs4 import BeautifulSoup as bs
 from urllib.request import urlopen as uReq
-import logging
 import pandas as pd
-logging.basicConfig(filename="scrapper.log" , level=logging.INFO)
 import pymongo
 
-app = Flask(__name__)
+application = Flask(__name__)
+app=application
 
 
 @app.route("/")
@@ -72,30 +70,28 @@ def review_items():
                     rating = ratings[i].text
                 except:
                     rating = 'No Rating'
-                    logging.info("rating")
                 
                 try:
                     #comment_heading.encode(encoding='utf-8')
                     comment_heading = comment_headings[i].text
                 except:
                     comment_heading = 'No Comment Heading'
-                    logging.info(comment_heading)
 
                 try:
                     #comment.encode(encoding='utf-8')
                     comment = comments[i].text
                 except Exception as e:
-                    logging.info(e)
+                    print("Exception while creating dictionary: ",e)
                 
                 myDict={'Product':mobile_model,'Customer_Name':name,'Rating':rating,'CommentHead':comment_heading,'Comment':comment}
                 
                 # scraping review of all customers into review list
                 reviews.append(myDict)
-                
+
                 # Converting data into Data Frames and then into csv file using pandas library
                 flipkart_reviews=pd.DataFrame.from_dict(reviews)
                 flipkart_reviews.to_csv(f"{search_query}.csv",index=None)
-
+            
             # 1. Establishing connection
             client = pymongo.MongoClient("mongodb+srv://pwskills:pwskills@cluster0.nj6x4ec.mongodb.net/?retryWrites=true&w=majority")
             # 2. Creating database
@@ -117,4 +113,4 @@ def review_items():
     
 
 if __name__=="__main__":
-    app.run(host="0.0.0.0",debug=True)
+    app.run(host="127.0.0.1",port=8000,debug=True)
